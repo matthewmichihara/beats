@@ -15,7 +15,6 @@ function onYouTubeIframeAPIReady() {
 player = new YT.Player('player', {
   height: '390',
   width: '640',
-  videoId: songs[0],
   events: {
     'onReady': onPlayerReady,
     'onStateChange': onPlayerStateChange
@@ -25,7 +24,15 @@ player = new YT.Player('player', {
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-event.target.playVideo();
+  $.getJSON("songs.json", function(data) {
+    songs = data;
+    $.each(songs, function(i) {
+      var li = $('<li/>').appendTo($('#playlist'));
+      var a = $('<a/>').text(songs[i].title).attr("href", "#").appendTo(li);
+      a.click(function(e) { e.preventDefault(); player.loadVideoById(songs[i].id); });
+    });
+    player.loadVideoById(songs[0].id);
+  });
 }
 
 // 5. The API calls this function when the player's state changes.
@@ -40,22 +47,10 @@ if (event.data == YT.PlayerState.ENDED) {
   if (currentSongIndex === songs.length) {
     currentSongIndex = 0;
   }
-  player.loadVideoById(songs[currentSongIndex]);
+  player.loadVideoById(songs[currentSongIndex].id);
 }
 }
 
 function stopVideo() {
   player.stopVideo();
 }
-
-// Generate song list.
-$(function() {
-  $.getJSON("songs.json", function(data) {
-    songs = data;
-    $.each(songs, function(i) {
-      var li = $('<li/>').appendTo($('#playlist'));
-      var a = $('<a/>').text(songs[i].title).attr("href", "#").appendTo(li);
-      a.click(function(e) { e.preventDefault(); player.loadVideoById(songs[i].id); });
-    });
-  });
-});

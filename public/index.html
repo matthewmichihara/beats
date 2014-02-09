@@ -2,12 +2,17 @@
 <html>
   <head>
     <title>beats</title>
+    <link type="text/css" rel="stylesheet" href="stylesheet.css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="beats.js"></script>
   </head>
   <body>
-    <!-- 1. The youtube <iframe> (and video player) will replace this <div> tag. -->
-    <div id="player" />
+    <div id="player_container">
+      <!-- 1. The youtube <iframe> (and video player) will replace this <div> tag. -->
+      <div id="player"></div>
+    </div>
+
+    <h2>TRACKS</h2>
     <ul id="playlist" />
   </body>
 </html>

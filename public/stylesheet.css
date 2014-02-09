@@ -1,0 +1,31 @@
+body {
+	background-color: #191919;
+	margin: 0px;
+	font-family: Helvetica;
+	text-align:center;
+}
+
+
+h2 {
+	color: #FFF056;
+	font-weight: lighter;
+}
+
+ul {
+	width: 200px;
+	margin: auto;
+	text-align: left;
+}
+
+a:link {
+	color: #FFF056;
+}
+
+a:visited {
+	color: #FFF056;
+}
+
+#player_container {
+	margin: auto;
+	background-color: black;
+}
