@@ -1,4 +1,4 @@
-var songs = ["hDXMgmZllA8", "-Fi7RtIaFSc", "L9KvZ3jKjI0"];
+var songs = [];
 var currentSongIndex = 0;
 
 // 2. This code loads the IFrame Player API code asynchronously.
@@ -50,7 +50,8 @@ function stopVideo() {
 
 // Generate song list.
 $(function() {
-  $.getJSON( "songs.json", function(songs) {
+  $.getJSON("songs.json", function(data) {
+    songs = data;
     $.each(songs, function(i) {
       var li = $('<li/>').appendTo($('#playlist'));
       var a = $('<a/>').text(songs[i].title).attr("href", "#").appendTo(li);
